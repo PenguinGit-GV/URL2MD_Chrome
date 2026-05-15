@@ -2,6 +2,22 @@ const currentBtn = document.getElementById('downloadCurrent');
 const allBtn = document.getElementById('downloadAll');
 const status = document.getElementById('status');
 
+const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+applyToolbarIcon(darkModeQuery.matches);
+darkModeQuery.addEventListener('change', (e) => applyToolbarIcon(e.matches));
+
+function applyToolbarIcon(isDark) {
+  const suffix = isDark ? '-light' : '';
+  chrome.action.setIcon({
+    path: {
+      16: `icons/icon16${suffix}.png`,
+      32: `icons/icon32${suffix}.png`,
+      48: `icons/icon48${suffix}.png`,
+      128: `icons/icon128${suffix}.png`
+    }
+  });
+}
+
 function setStatus(text, isError = false) {
   status.textContent = text;
   status.classList.toggle('error', isError);
