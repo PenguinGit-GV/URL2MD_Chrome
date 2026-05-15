@@ -1,0 +1,1 @@
+This a minimalist Chrome extension that allows the user to save the current tab or all browser tabs as markdown files and download them directly. Nothing more, nothing less. Designed for use to collect random articles and reports from around the web to feed to an LLM 
