@@ -4,6 +4,7 @@ const MENU_DOWNLOAD_ALL = 'url2md-download-all';
 
 chrome.runtime.onInstalled.addListener(createMenus);
 chrome.runtime.onStartup.addListener(createMenus);
+createMenus();
 
 function createMenus() {
   chrome.contextMenus.removeAll(() => {

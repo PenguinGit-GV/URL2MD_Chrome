@@ -61,9 +61,13 @@
     return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
   }
 
+  function yamlString(s) {
+    return '"' + String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\s+/g, ' ').trim() + '"';
+  }
+
   function buildFrontmatter(article) {
-    const lines = ['---', `created: ${isoLocal(new Date())}`, `source: ${article.baseURI}`];
-    if (article.byline) lines.push(`author: ${article.byline}`);
+    const lines = ['---', `created: ${isoLocal(new Date())}`, `source: ${yamlString(article.baseURI)}`];
+    if (article.byline) lines.push(`author: ${yamlString(article.byline)}`);
     lines.push('---', '', `# ${article.pageTitle || 'Untitled'}`, '');
     if (article.excerpt) lines.push('> ## Excerpt', `> ${article.excerpt.replace(/\n+/g, ' ')}`, '', '---', '');
     return lines.join('\n');
